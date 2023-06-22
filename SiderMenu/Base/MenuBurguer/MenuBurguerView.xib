@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuBurguerView" customModule="SiderMenu" customModuleProvider="target">
+            <connections>
+                <outlet property="backGround" destination="rpN-Kf-4hK" id="Eeb-qq-4dS"/>
+                <outlet property="content" destination="i5M-Pr-FkT" id="KzL-g6-uI6"/>
+                <outlet property="tableView" destination="nZ9-pi-awN" id="Wy0-NB-oWA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpN-Kf-4hK">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nZ9-pi-awN">
+                    <rect key="frame" x="0.0" y="0.0" width="294.66666666666669" height="852"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="700" constant="250" id="4xb-1a-SbJ"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" priority="700" constant="400" id="OtP-gy-SC8"/>
+                        <constraint firstAttribute="width" priority="250" id="cKr-iR-zod"/>
+                    </constraints>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nZ9-pi-awN" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="3:4" priority="700" id="8dp-V2-6pE"/>
+                <constraint firstItem="nZ9-pi-awN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Tmz-dC-ahx"/>
+                <constraint firstAttribute="trailing" secondItem="rpN-Kf-4hK" secondAttribute="trailing" id="Uqc-d5-u0H"/>
+                <constraint firstAttribute="bottom" secondItem="rpN-Kf-4hK" secondAttribute="bottom" id="WV6-Y9-x5C"/>
+                <constraint firstItem="nZ9-pi-awN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XxF-HC-y4w"/>
+                <constraint firstAttribute="bottom" secondItem="nZ9-pi-awN" secondAttribute="bottom" id="i2o-nE-ClL"/>
+                <constraint firstItem="rpN-Kf-4hK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wcD-HL-q2B"/>
+                <constraint firstItem="rpN-Kf-4hK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xy2-he-Jg1"/>
+            </constraints>
+            <point key="canvasLocation" x="-1" y="-12"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

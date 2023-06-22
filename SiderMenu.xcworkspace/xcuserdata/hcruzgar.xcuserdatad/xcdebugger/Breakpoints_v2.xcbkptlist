@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "E506ECB2-1535-4F24-BF6B-DFB37BD5D521"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1A54AC4-4087-4299-8EC6-AA317EC4A295"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SiderMenu/NetworkLayer/Configuration/WebService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "data(request:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B1A54AC4-4087-4299-8EC6-AA317EC4A295 - e3bb54c0da067f55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RxSwift.AnyObserver&lt;Foundation.Data&gt;) -&gt; RxSwift.Disposable in RxSwift.Reactive&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.NSURLSession&gt;.data(request: Foundation.URLRequest) -&gt; RxSwift.Observable&lt;Foundation.Data&gt;"
+                  moduleName = "SiderMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hcruzgar/Documents/Proyectos%20Xcode/SiderMenu/SiderMenu/NetworkLayer/Configuration/WebService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "690">
+               </Location>
+               <Location
+                  uuid = "B1A54AC4-4087-4299-8EC6-AA317EC4A295 - 543f84c4e4f89787"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (RxSwift.AnyObserver&lt;Foundation.Data&gt;) -&gt; RxSwift.Disposable in RxSwift.Reactive&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.NSURLSession&gt;.data(request: Foundation.URLRequest) -&gt; RxSwift.Observable&lt;Foundation.Data&gt;"
+                  moduleName = "SiderMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hcruzgar/Documents/Proyectos%20Xcode/SiderMenu/SiderMenu/NetworkLayer/Configuration/WebService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "274">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12AF280E-8740-4C19-B6B5-285186DAA60A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SiderMenu/NetworkLayer/Configuration/WebService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "data(request:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "12AF280E-8740-4C19-B6B5-285186DAA60A - e3bb54c0da0670a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RxSwift.AnyObserver&lt;Foundation.Data&gt;) -&gt; RxSwift.Disposable in RxSwift.Reactive&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.NSURLSession&gt;.data(request: Foundation.URLRequest) -&gt; RxSwift.Observable&lt;Foundation.Data&gt;"
+                  moduleName = "SiderMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hcruzgar/Documents/Proyectos%20Xcode/SiderMenu/SiderMenu/NetworkLayer/Configuration/WebService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "1809">
+               </Location>
+               <Location
+                  uuid = "12AF280E-8740-4C19-B6B5-285186DAA60A - 9ab7d11277fba0d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 (RxSwift.AnyObserver&lt;Foundation.Data&gt;) -&gt; RxSwift.Disposable in RxSwift.Reactive&lt;&#x3c4;_0_0 where &#x3c4;_0_0: __C.NSURLSession&gt;.data(request: Foundation.URLRequest) -&gt; RxSwift.Observable&lt;Foundation.Data&gt;"
+                  moduleName = "SiderMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hcruzgar/Documents/Proyectos%20Xcode/SiderMenu/SiderMenu/NetworkLayer/Configuration/WebService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "892386F4-3C08-4A9B-9F49-21BC6E950285"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SiderMenu/NetworkLayer/Configuration/WebService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "validate(success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

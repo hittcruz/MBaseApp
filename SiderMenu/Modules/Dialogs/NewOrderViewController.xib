@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewOrderViewController" customModule="SiderMenu" customModuleProvider="target">
+            <connections>
+                <outlet property="txtDateOrder" destination="v5F-yL-hnD" id="NYY-uE-Oa8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewCombo" destination="STx-bd-iBn" id="0UQ-TU-28B"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFX-bS-oxp" customClass="GeneralCustomView" customModule="SiderMenu" customModuleProvider="target">
+                    <rect key="frame" x="20" y="313.66666666666669" width="335" height="185"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Order" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehc-oe-Qyc">
+                            <rect key="frame" x="5" y="8" width="325" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="k8m-bN-eRY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                            <color key="textColor" systemColor="systemGreenColor"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STx-bd-iBn">
+                            <rect key="frame" x="5" y="46" width="325" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ldV-yj-62l"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LKC-PZ-nsX">
+                            <rect key="frame" x="10" y="94" width="315" height="40"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha entrega:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yT-TG-pxm">
+                                    <rect key="frame" x="0.0" y="0.0" width="152.66666666666666" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v5F-yL-hnD">
+                                    <rect key="frame" x="162.66666666666663" y="0.0" width="152.33333333333337" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="tqQ-gE-BXI"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="8Xl-tg-rnJ">
+                            <rect key="frame" x="5" y="142" width="325" height="35"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVA-3J-HDd" customClass="CustomButton" customModule="SiderMenu" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="156.66666666666666" height="35"/>
+                                    <color key="backgroundColor" red="0.11134449909999999" green="0.1227912312" blue="0.79008940080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Cancelar">
+                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </buttonConfiguration>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="close:" destination="-1" eventType="touchUpInside" id="XjD-lR-GD7"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyV-Wd-Doc" customClass="CustomButton" customModule="SiderMenu" customModuleProvider="target">
+                                    <rect key="frame" x="171.66666666666663" y="0.0" width="153.33333333333337" height="35"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Aceptar">
+                                        <color key="baseForegroundColor" red="0.11134449909999999" green="0.1227912312" blue="0.79008940080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </buttonConfiguration>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.11134449909999999" green="0.1227912312" blue="0.79008940080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="goAddProduct:" destination="-1" eventType="touchUpInside" id="Ogb-kJ-985"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="br5-Dn-R6V"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    <constraints>
+                        <constraint firstItem="LKC-PZ-nsX" firstAttribute="top" secondItem="STx-bd-iBn" secondAttribute="bottom" constant="8" id="3pX-u1-oPz"/>
+                        <constraint firstAttribute="bottom" secondItem="8Xl-tg-rnJ" secondAttribute="bottom" constant="8" id="AuV-cX-aH8"/>
+                        <constraint firstItem="ehc-oe-Qyc" firstAttribute="leading" secondItem="gFX-bS-oxp" secondAttribute="leading" constant="5" id="Bqw-gM-IbC"/>
+                        <constraint firstItem="STx-bd-iBn" firstAttribute="leading" secondItem="gFX-bS-oxp" secondAttribute="leading" constant="5" id="K9d-l2-3Qf"/>
+                        <constraint firstItem="8Xl-tg-rnJ" firstAttribute="leading" secondItem="gFX-bS-oxp" secondAttribute="leading" constant="5" id="OFW-Ri-eEv"/>
+                        <constraint firstItem="LKC-PZ-nsX" firstAttribute="leading" secondItem="gFX-bS-oxp" secondAttribute="leading" constant="10" id="S4u-PF-chI"/>
+                        <constraint firstItem="STx-bd-iBn" firstAttribute="top" secondItem="ehc-oe-Qyc" secondAttribute="bottom" constant="8" id="XK3-tN-h26"/>
+                        <constraint firstAttribute="trailing" secondItem="STx-bd-iBn" secondAttribute="trailing" constant="5" id="Z5r-Nx-Z0Z"/>
+                        <constraint firstAttribute="trailing" secondItem="8Xl-tg-rnJ" secondAttribute="trailing" constant="5" id="cL6-pV-HBj"/>
+                        <constraint firstAttribute="trailing" secondItem="ehc-oe-Qyc" secondAttribute="trailing" constant="5" id="oGK-vS-UZr"/>
+                        <constraint firstAttribute="trailing" secondItem="LKC-PZ-nsX" secondAttribute="trailing" constant="10" id="tAU-4D-Im4"/>
+                        <constraint firstItem="ehc-oe-Qyc" firstAttribute="top" secondItem="gFX-bS-oxp" secondAttribute="top" constant="8" id="tpg-Bo-QDb"/>
+                        <constraint firstItem="8Xl-tg-rnJ" firstAttribute="top" secondItem="LKC-PZ-nsX" secondAttribute="bottom" constant="8" id="yAJ-34-E52"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornnerRadius">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="gFX-bS-oxp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="72t-8n-VAr"/>
+                <constraint firstItem="gFX-bS-oxp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CGI-ew-E7f"/>
+                <constraint firstItem="gFX-bS-oxp" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-20" id="wQQ-nl-hci"/>
+                <constraint firstItem="gFX-bS-oxp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="xmq-yE-haR"/>
+            </constraints>
+            <point key="canvasLocation" x="110" y="-11"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="cyV-Wd-Doc">
+            <size key="intrinsicContentSize" width="83.666666666666671" height="34.333333333333336"/>
+        </designable>
+        <designable name="fVA-3J-HDd">
+            <size key="intrinsicContentSize" width="91.666666666666671" height="34.333333333333336"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
