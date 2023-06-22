@@ -35,7 +35,7 @@ class PopularsCollectionViewCell: UICollectionViewCell {
     func displayPopulars(item: Products){
         lblTitle.text = item.name ?? ""
         lblDescription.text = item.description ?? ""
-        lblPreci.text = String(item.unitPreci ?? 0.0)
+        lblPreci.text = String(item.unitPreci?.rounded(toPlaces: 2) ?? 0.00)
 //        if let image = item.image {
 //            imgProduct.image = UIImage(named: image)
 //        }

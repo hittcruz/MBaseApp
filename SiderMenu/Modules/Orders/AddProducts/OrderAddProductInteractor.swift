@@ -41,8 +41,45 @@ class OrderAddProductInteractor: OrderAddProductPresenterToInteractorProtocol {
             }).disposed(by: disposeBag)
     }
     
-    func prepareResponseAddProduct() {
-        let datos = ["galon de agua", "gas"]
-        presenter?.fetchedDataSuccessAddProduct(list: datos)
+    func prepareShowCart(_ orderId: Int) {
+        webService.load(modelType: CartModel.self, from: .order(serviceType: .showCart(orderID: orderId)))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    print("Data extraida \(results)")
+                    self?.presenter?.fetchedDataSuccessShowCart(results)
+                }
+                }, onError: { [weak self] error in
+                    print("Data extraida \(error)")
+                    self?.presenter?.fetchedDataError()
+            }).disposed(by: disposeBag)
+    }
+    
+    func prepareResponseAddProduct(_ orderId: Int, _ productID: Int,_ preci:Double) {
+        let quantity = 1
+        webService.load(modelType: CartModel.self, from: .order(serviceType: .addProduct(orderID: orderId, productID: productID, quantity: quantity, salePreci: preci)))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    print("Data extraida \(results)")
+                    self?.presenter?.fetchedDataSuccessAddProduct(results)
+                }
+                }, onError: { [weak self] error in
+                    print("Data extraida \(error)")
+                    self?.presenter?.fetchedDataError()
+            }).disposed(by: disposeBag)
+    }
+    
+    func prepareResponseRemoveAllProduct(_ orderId: Int) {
+        webService.load(modelType: CartModel.self, from: .order(serviceType: .removeAllProduct(orderID: orderId)))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    print("Data extraida \(results)")
+                }
+                }, onError: { [weak self] error in
+                    print("Data extraida \(error)")
+                    self?.presenter?.fetchedDataError()
+            }).disposed(by: disposeBag)
     }
 }

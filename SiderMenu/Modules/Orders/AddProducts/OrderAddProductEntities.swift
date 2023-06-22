@@ -36,7 +36,10 @@ enum CategorieOption: String, CaseIterable{
     }
 }
 
-struct CartModel {
-    let count: Int
-    let products: [Products]
+// MARK: - CartModel
+struct CartModel: Codable {
+    let message: String?
+    let count: Int?
+    let total: Double?
+    let products: [Products]?
 }

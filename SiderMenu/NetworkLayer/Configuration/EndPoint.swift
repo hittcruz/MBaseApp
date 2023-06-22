@@ -12,6 +12,7 @@ internal enum Endpoint {
     case product(serviceType: ProductService)
     case category(serviceType: CategoryService)
     case client(serviceType: ClientService)
+    case order(serviceType: OrderService)
 }
 
 protocol Requestable {
@@ -39,7 +40,7 @@ internal extension Endpoint {
         var request = URLRequest(url: components.url!)
         request.httpMethod = properties.method.rawValue
 
-        if properties.method == .post {
+        if properties.method == .post || properties.method == .delete || properties.method == .put {
             var headers = request.allHTTPHeaderFields ?? [:]
             headers["Content-Type"] = "application/json"
             request.allHTTPHeaderFields = headers
@@ -84,6 +85,8 @@ private extension Endpoint {
             return CategoryNetworkFactory.getService(from: serviceType)
         case .client(serviceType: let serviceType):
             return ClientNetworkFactory.getService(from: serviceType)
+        case .order(serviceType: let serviceType):
+            return OrderNetworkFactory.getService(from: serviceType)
         }
     }
 }

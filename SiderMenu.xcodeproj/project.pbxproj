@@ -35,6 +35,8 @@
 		1C89E7382A0C214A00E52B7B /* MenuBurguerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89E7362A0C214A00E52B7B /* MenuBurguerView.swift */; };
 		1C89E7392A0C214A00E52B7B /* MenuBurguerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C89E7372A0C214A00E52B7B /* MenuBurguerView.xib */; };
 		1CB951492A0AAA7500BC0996 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB951482A0AAA7500BC0996 /* NavigationViewController.swift */; };
+		1CBC84792A44C678004928CE /* OrderNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC84782A44C678004928CE /* OrderNetwork.swift */; };
+		1CBC847B2A45057D004928CE /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC847A2A45057D004928CE /* Double+Extension.swift */; };
 		1CBF77182A37B67B00B7F66D /* Labels+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF77172A37B67B00B7F66D /* Labels+Extensions.swift */; };
 		1CC5E2942A180C3E003E2F37 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC5E2932A180C3E003E2F37 /* DropdownTableViewCell.swift */; };
 		1CC732C62A437B8900E2C0A1 /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC732C52A437B8900E2C0A1 /* ServiceProtocols.swift */; };
@@ -107,6 +109,8 @@
 		1C89E7362A0C214A00E52B7B /* MenuBurguerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBurguerView.swift; sourceTree = "<group>"; };
 		1C89E7372A0C214A00E52B7B /* MenuBurguerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuBurguerView.xib; sourceTree = "<group>"; };
 		1CB951482A0AAA7500BC0996 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		1CBC84782A44C678004928CE /* OrderNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNetwork.swift; sourceTree = "<group>"; };
+		1CBC847A2A45057D004928CE /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		1CBF77172A37B67B00B7F66D /* Labels+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels+Extensions.swift"; sourceTree = "<group>"; };
 		1CC5E2932A180C3E003E2F37 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		1CC732C52A437B8900E2C0A1 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				1CC732D12A43844400E2C0A1 /* ProductNetwork.swift */,
 				1CC732D32A438FEE00E2C0A1 /* CategoryNetwork.swift */,
 				1CC732D52A43AC1700E2C0A1 /* ClientNetwork.swift */,
+				1CBC84782A44C678004928CE /* OrderNetwork.swift */,
 			);
 			path = EndPoints;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				1CC732DB2A43B39500E2C0A1 /* UIViewControllerExtension.swift */,
+				1CBC847A2A45057D004928CE /* Double+Extension.swift */,
 			);
 			path = "Protocols+Extensiones";
 			sourceTree = "<group>";
@@ -753,6 +759,7 @@
 				1C2394382A13FF1600A20CFB /* OrdersProtocol.swift in Sources */,
 				1CD97CDD2A38C32100B06622 /* UITextField+DataPicker.swift in Sources */,
 				1C2394482A1422B600A20CFB /* OrderAddProductRouter.swift in Sources */,
+				1CBC847B2A45057D004928CE /* Double+Extension.swift in Sources */,
 				1CECD2A82A09733500C7F0FD /* AppDelegate.swift in Sources */,
 				1C80F1A22A0E9ED1006A6566 /* HomeDeliveryTableViewCell.swift in Sources */,
 				1CC732D92A43AD4D00E2C0A1 /* ClientResponse.swift in Sources */,
@@ -777,6 +784,7 @@
 				1CE4DA9C2A3A58BA00936C41 /* AllsProductsCollectionViewCell.swift in Sources */,
 				1CE4DA972A3A397500936C41 /* PopularsCollectionViewCell.swift in Sources */,
 				1C2394462A1422AD00A20CFB /* OrderAddProductEntities.swift in Sources */,
+				1CBC84792A44C678004928CE /* OrderNetwork.swift in Sources */,
 				1C0D3D102A12D93900A6EB65 /* OrdersTableViewCell.swift in Sources */,
 				1CC732D22A43844400E2C0A1 /* ProductNetwork.swift in Sources */,
 				1C23944A2A1422BE00A20CFB /* OrderAddProductProtocol.swift in Sources */,
@@ -937,7 +945,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hitt.SiderMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -967,7 +975,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hitt.SiderMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

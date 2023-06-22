@@ -31,19 +31,31 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
         interactor?.prepareResponseCategory()
         interactor?.prepareResponseForModel()
         initialConfiguration()
+        
+        let orderId = 5
+        interactor?.prepareShowCart(orderId)
     }
     
     private func initialConfiguration(){
         view?.bottomConstraint.constant = constantBottomCloseCart
+        view?.createCart()
+        view?.carView.isHidden = true
+        
     }
     
     func addProduct(_ index: Int) {
-        view?.bottomConstraint.constant = constantBottomShowCart
         let item = view?.productsData[index]
-//        view?.createCart(<#T##model: CartModel##CartModel#>)
-        print("OrderAddProductPresenter-delegateTapProducts \(view?.productsData[index].name)")
-        interactor?.prepareResponseAddProduct()
+        let orderId = 5
+        interactor?.prepareResponseAddProduct(orderId, item?.id ?? 0, item?.unitPreci ?? 0.0)
     }
+    
+    func removeAllProducts() {
+        view?.bottomConstraint.constant = constantBottomCloseCart
+        view?.carView.isHidden = true
+        let orderId = 5
+        interactor?.prepareResponseRemoveAllProduct(orderId)
+    }
+    
     
     func saveProduct(_ list: [String]) {
         
@@ -63,6 +75,7 @@ extension OrderAddProductPresenter: OrderAddProductInteractorToPresenterProtocol
         if let categories = model.categories {
             view?.categoriesData = categories.sorted { $0.description ?? "" < $1.description ?? ""}
         }
+        view?.reloadData()
     }
     
     func fetchedDataSuccess(model: ProductResponse) {
@@ -75,12 +88,33 @@ extension OrderAddProductPresenter: OrderAddProductInteractorToPresenterProtocol
         }
         view?.reloadData()
     }
-
+    
+    func fetchedDataSuccessShowCart(_ model: CartModel) {
+        let count = model.count ?? 0
+        if count > 0{
+            view?.bottomConstraint.constant = constantBottomShowCart
+            view?.carView.isHidden = false
+            view?.labelPreci.text = model.total?.rounded(toPlaces: 2).description
+            view?.labelCant.text = model.count?.description
+        }else{
+            view?.bottomConstraint.constant = constantBottomCloseCart
+            view?.carView.isHidden = true
+        }
+    }
+/*
     func fetchedDataSuccessAddProduct(list: [String]) {
         self.delegate?.valueEntered(data: list)
         guard let vc = view as? UIViewController else { return }
 //        router?.goToOrders(vc)
 //        vc.navigationController?.popViewController(animated: true)
+    }
+*/
+    
+    func fetchedDataSuccessAddProduct(_ model: CartModel) {
+        view?.bottomConstraint.constant = constantBottomShowCart
+        view?.carView.isHidden = false
+        view?.labelPreci.text = model.total?.rounded(toPlaces: 2).description
+        view?.labelCant.text = model.count?.description
     }
     
     func fetchedDataError() {

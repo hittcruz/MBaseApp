@@ -31,12 +31,40 @@ class OrderAddProductViewController: UIViewController {
         }
     }
     
-    private let carView: UIView = {
+    private let stckView: UIStackView = {
+        let stck = UIStackView()
+        stck.translatesAutoresizingMaskIntoConstraints = false
+        stck.axis = .vertical
+        stck.distribution  = UIStackView.Distribution.equalSpacing
+        stck.alignment = UIStackView.Alignment.center
+        stck.spacing = 5
+        return stck
+    }()
+    
+    internal var carView: UIView = {
         let car = UIView()
         car.translatesAutoresizingMaskIntoConstraints = false
         car.layer.cornerRadius = 8
         car.backgroundColor = .systemGreen
         return car
+    }()
+    
+    internal var labelPreci: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0.00"
+        label.textColor = .systemGray
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        return label
+    }()
+    
+    internal var labelCant: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
     }()
     
     var presenter: OrderAddProductViewToPresenterProtocol?
@@ -60,28 +88,14 @@ class OrderAddProductViewController: UIViewController {
         cvAlls.dataSource = self
      
     }
-
-    @IBAction func backAction(_ sender: Any) {
-        let datos = ["galon de agua", "gas"]
-//        presenter?.saveProduct(datos)
-    }
     
-    private func createCarView(_ model: CartModel){
+    private func createCarView(){
         let cantView: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .white
             view.layer.cornerRadius = 20
             return view
-        }()
-        
-        let labelCant: UILabel = {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = String(model.count)
-            label.textColor = .black
-            label.font = UIFont.boldSystemFont(ofSize: 20)
-            return label
         }()
         
         let labelTitle: UILabel = {
@@ -97,15 +111,6 @@ class OrderAddProductViewController: UIViewController {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = "S/."
-            label.textColor = .systemGray
-            label.font = UIFont.boldSystemFont(ofSize: 15)
-            return label
-        }()
-        
-        let labelPreci: UILabel = {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = String(model.count)
             label.textColor = .systemGray
             label.font = UIFont.boldSystemFont(ofSize: 15)
             return label
@@ -144,10 +149,12 @@ class OrderAddProductViewController: UIViewController {
         carView.addSubview(cantView)
         carView.addSubview(showButton)
         carView.addSubview(clearButton)
+        stckView.addArrangedSubview(carView)
         
-        carView.leadingAnchor.constraint(equalTo: secondaryView.leadingAnchor, constant: 15).isActive = true
-        carView.trailingAnchor.constraint(equalTo: secondaryView.trailingAnchor, constant: -15).isActive = true
-        carView.bottomAnchor.constraint(equalTo: secondaryView.bottomAnchor, constant: 5).isActive = true
+        stckView.leadingAnchor.constraint(equalTo: secondaryView.leadingAnchor, constant: 15).isActive = true
+        stckView.trailingAnchor.constraint(equalTo: secondaryView.trailingAnchor, constant: -15).isActive = true
+        stckView.bottomAnchor.constraint(equalTo: secondaryView.bottomAnchor, constant: 5).isActive = true
+        
         carView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         cantView.centerYAnchor.constraint(equalTo: carView.centerYAnchor).isActive = true
@@ -188,8 +195,7 @@ class OrderAddProductViewController: UIViewController {
     @objc func clearCart(_ sender: UIButton) {
         print("clear cart")
         sender.handleTap()
-        carView.removeFromSuperview()
-        bottomConstraint.constant = 8
+        presenter?.removeAllProducts()
     }
 }
 
@@ -200,9 +206,9 @@ extension OrderAddProductViewController: OrderAddProductPresenterToViewProtocol 
         cvAlls.reloadData()
     }
   
-    func createCart(_ model: CartModel) {
-        view.addSubview(carView)
-        createCarView(model)
+    func createCart() {
+        view.addSubview(stckView)
+        createCarView()
     }
 }
 
