@@ -21,7 +21,6 @@ class AllsProductsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var viewAddProduct: GeneralCustomView!
     
-    var index: Int = 0
     var delegate : delegateTapProducts?
     
     override func layoutSubviews() {

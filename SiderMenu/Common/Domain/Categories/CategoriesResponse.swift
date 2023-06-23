@@ -17,6 +17,7 @@ struct CategorieResponse: Codable {
 struct Category: Codable {
     let id: Int?
     let description, createdAt, updatedAt: String?
+    var active: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id, description

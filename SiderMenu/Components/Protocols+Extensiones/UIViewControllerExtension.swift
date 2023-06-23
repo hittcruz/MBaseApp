@@ -25,7 +25,7 @@ public extension UIViewController {
         activity.translatesAutoresizingMaskIntoConstraints = false
         activity.centerXAnchor.constraint(equalTo: backgroundAlphaView.centerXAnchor).isActive = true
         activity.centerYAnchor.constraint(equalTo: backgroundAlphaView.centerYAnchor).isActive = true
-        activity.style = .whiteLarge
+        activity.style = .large
 //        let setColorByEntity = RemoteLib.shared.settingsManager.primaryColorByEntity
 //        activity.color = setColorByEntity.isEmpty ? ConstantsPrivate.Colors.baseColour() :  UIColor(RemoteLib.shared.settingsManager.primaryColorByEntity)
         activity.color = .systemGreen

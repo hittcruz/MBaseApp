@@ -43,3 +43,9 @@ struct CartModel: Codable {
     let total: Double?
     let products: [Products]?
 }
+
+// MARK: - FilterModel
+struct FilterModel: Codable {
+    let message: String?
+    let results: [Products]?
+}

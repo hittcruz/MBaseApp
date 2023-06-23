@@ -24,7 +24,7 @@ protocol OrdersInteractorToPresenterProtocol: AnyObject {
     func fetchedDataSuccess(list: [OrderModel])
     func fetchedDataSuccessClient(_ model: ClientResponse)
     func fetchedDataSuccessOrder()
-    func fetchedDataError()
+    func fetchedDataError(_ error: Error)
 }
 
 protocol OrdersPresenterToInteractorProtocol: AnyObject {

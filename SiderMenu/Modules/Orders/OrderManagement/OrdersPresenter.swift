@@ -118,7 +118,7 @@ extension OrdersPresenter: OrdersInteractorToPresenterProtocol{
         router?.goToAddProducts(vc, self)
     }
     
-    func fetchedDataError() {
+    func fetchedDataError(_ error: Error) {
         
     }
 }

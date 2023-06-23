@@ -28,5 +28,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
             let icon = CategorieOption(rawValue: description)?.imageName
             imgView.image = UIImage(named: icon ?? "")
         }
+        containerView.backgroundColor = item.active ? .systemGreen : .systemGray6
     }
 }

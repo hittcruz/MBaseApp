@@ -23,6 +23,8 @@
 		1C23944A2A1422BE00A20CFB /* OrderAddProductProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2394492A1422BE00A20CFB /* OrderAddProductProtocol.swift */; };
 		1C23944F2A143F4800A20CFB /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C23944D2A143F4800A20CFB /* NewOrderViewController.swift */; };
 		1C2394502A143F4800A20CFB /* NewOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C23944E2A143F4800A20CFB /* NewOrderViewController.xib */; };
+		1C7969792A45FA8F008798AA /* ConstantPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7969782A45FA8F008798AA /* ConstantPrivate.swift */; };
+		1C79697B2A46362A008798AA /* AlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C79697A2A46362A008798AA /* AlertHandler.swift */; };
 		1C80F1992A0E9519006A6566 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F1982A0E9519006A6566 /* CustomView.swift */; };
 		1C80F19C2A0E95C1006A6566 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F19A2A0E95C1006A6566 /* HomeViewController.swift */; };
 		1C80F19D2A0E95C1006A6566 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C80F19B2A0E95C1006A6566 /* HomeViewController.xib */; };
@@ -97,6 +99,8 @@
 		1C2394492A1422BE00A20CFB /* OrderAddProductProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAddProductProtocol.swift; sourceTree = "<group>"; };
 		1C23944D2A143F4800A20CFB /* NewOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		1C23944E2A143F4800A20CFB /* NewOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewOrderViewController.xib; sourceTree = "<group>"; };
+		1C7969782A45FA8F008798AA /* ConstantPrivate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantPrivate.swift; sourceTree = "<group>"; };
+		1C79697A2A46362A008798AA /* AlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler.swift; sourceTree = "<group>"; };
 		1C80F1982A0E9519006A6566 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		1C80F19A2A0E95C1006A6566 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1C80F19B2A0E95C1006A6566 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 			children = (
 				1CC732DB2A43B39500E2C0A1 /* UIViewControllerExtension.swift */,
 				1CBC847A2A45057D004928CE /* Double+Extension.swift */,
+				1C79697A2A46362A008798AA /* AlertHandler.swift */,
+				1CD3AA8E2A0D8E670064B71B /* UIAplicationsExtension.swift */,
 			);
 			path = "Protocols+Extensiones";
 			sourceTree = "<group>";
@@ -376,7 +382,6 @@
 			isa = PBXGroup;
 			children = (
 				1CD3AA862A0D6A950064B71B /* SettingsManager.swift */,
-				1CD3AA8E2A0D8E670064B71B /* UIAplicationsExtension.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				1C89E7312A0C1CBD00E52B7B /* MenuBurguer */,
 				1CB951482A0AAA7500BC0996 /* NavigationViewController.swift */,
 				1CECD2BD2A09762500C7F0FD /* ViewControllers */,
+				1C7969782A45FA8F008798AA /* ConstantPrivate.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -766,9 +772,11 @@
 				1CE4DA912A3A2A8100936C41 /* CategoriesCollectionViewCell.swift in Sources */,
 				1CECD2AA2A09733500C7F0FD /* SceneDelegate.swift in Sources */,
 				1C80F1AD2A0EE111006A6566 /* UIView+Extension.swift in Sources */,
+				1C79697B2A46362A008798AA /* AlertHandler.swift in Sources */,
 				1CE569342A40DC1700F8699F /* ProductResponse.swift in Sources */,
 				1CD3AA8D2A0D7F050064B71B /* Checkbox.swift in Sources */,
 				1CC732D62A43AC1700E2C0A1 /* ClientNetwork.swift in Sources */,
+				1C7969792A45FA8F008798AA /* ConstantPrivate.swift in Sources */,
 				1C80F1AB2A0ED2D9006A6566 /* CustomButton.swift in Sources */,
 				1CC732CE2A437D7C00E2C0A1 /* CharacterNetwork.swift in Sources */,
 				1CC732CA2A437BDE00E2C0A1 /* EndPoint.swift in Sources */,

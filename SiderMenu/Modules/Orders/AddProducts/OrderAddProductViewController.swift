@@ -11,7 +11,7 @@ class OrderAddProductViewController: UIViewController {
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var secondaryView: UIView!
-    
+    @IBOutlet weak var containerPopulars: GeneralCustomView!
     @IBOutlet weak var cvAlls: UICollectionView!{
         didSet{
             let requestCell = UINib(nibName: AllsProductsCollectionViewCell.cellType, bundle: nil)
@@ -159,8 +159,8 @@ class OrderAddProductViewController: UIViewController {
         
         cantView.centerYAnchor.constraint(equalTo: carView.centerYAnchor).isActive = true
         cantView.leadingAnchor.constraint(equalTo: carView.leadingAnchor, constant: 5).isActive = true
-        cantView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        cantView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        cantView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        cantView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         labelCant.centerYAnchor.constraint(equalTo: cantView.centerYAnchor).isActive = true
         labelCant.centerXAnchor.constraint(equalTo: cantView.centerXAnchor).isActive = true
@@ -196,6 +196,10 @@ class OrderAddProductViewController: UIViewController {
         print("clear cart")
         sender.handleTap()
         presenter?.removeAllProducts()
+    }
+    
+    @IBAction func seeAllAction(_ sender: Any) {
+        presenter?.seeAll()
     }
 }
 
@@ -245,6 +249,7 @@ extension OrderAddProductViewController: UICollectionViewDelegate, UICollectionV
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier , for: indexPath) as! PopularsCollectionViewCell
             cell.viewAddProduct.tag = indexPath.row
+            cell.delegate = self
             cell.displayPopulars(item: popularsData[indexPath.row])
             return cell
         }else{
@@ -261,9 +266,22 @@ extension OrderAddProductViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if collectionView == self.cvCategories {
-            guard let c = collectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell else { return }
-//            c.containerView.backgroundColor = categoriesData[indexPath.row].active ? .clear : .systemGreen
-//            categoriesData[indexPath.row].active = categoriesData[indexPath.row].active ? false : true
+            let active = categoriesData[indexPath.row].active
+//            guard let c = collectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell else { return }
+//            c.handleTap()
+            categoriesData[indexPath.row].active = active ? false : true
+            updateActiveCells(indexPath.row)
+//            self.cvCategories.reloadItems(at: [indexPath])
+            collectionView.reloadData()
+            presenter?.filterProductsforCategory(categoriesData[indexPath.row].id ?? 0)
+        }
+    }
+    
+    private func updateActiveCells(_ index: Int){
+        for (i, value) in categoriesData.enumerated() {
+            if value.id != categoriesData[index].id{
+                categoriesData[i].active = false
+            }
         }
     }
     

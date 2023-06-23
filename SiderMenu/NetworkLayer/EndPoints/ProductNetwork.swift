@@ -9,6 +9,7 @@ import Foundation
 
 enum ProductService: ServiceEnum {
     case list
+    case filterProducts(categorieID: Int)
  
 }
 
@@ -19,6 +20,8 @@ struct ProductNetworkFactory: Networking {
         switch type {
         case .list:
             return ProductList()
+        case .filterProducts(categorieID: let categorieID):
+            return FilterProducts(categorieID)
         }
     }
 }
@@ -37,6 +40,24 @@ extension ProductNetworkFactory {
 
         init() {
             
+        }
+    }
+    
+    private struct FilterProducts: Requestable{
+        private var categorieId: Int
+        
+        var method: HTTPMethod = .post
+        
+        var path: String = "filterProducts"
+        
+        var parameters: [String : Any]{
+            return [
+                "categorie_id": categorieId
+            ]
+        }
+        
+        init(_ categorieId: Int){
+            self.categorieId = categorieId
         }
     }
 }

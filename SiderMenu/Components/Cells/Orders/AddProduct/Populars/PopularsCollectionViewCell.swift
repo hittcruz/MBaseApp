@@ -16,6 +16,8 @@ class PopularsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPreci: UILabel!
     @IBOutlet weak var viewAddProduct: GeneralCustomView!
     
+    var delegate : delegateTapProducts?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,7 +31,7 @@ class PopularsCollectionViewCell: UICollectionViewCell {
     
     @objc func taphandleProduct() {
         viewAddProduct.handleTap()
-        print("tap en add product \(viewAddProduct.tag)")
+        delegate?.tapAddProduct(index: viewAddProduct.tag)
     }
     
     func displayPopulars(item: Products){

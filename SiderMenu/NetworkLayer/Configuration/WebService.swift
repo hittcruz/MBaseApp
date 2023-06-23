@@ -37,7 +37,7 @@ extension Decodable {
 final internal class WebService {
     private let session = URLSession(configuration: .default)
 //    private lazy var baseURL: URL = URL(string: "https://rickandmortyapi.com/api")!
-    private lazy var baseURL: URL = URL(string: "http://192.168.1.7:8000/api")!
+    private lazy var baseURL: URL = URL(string: ConstantsPrivate.Services.BaseURL.pro)!
     
     private let decoder = JSONDecoder()
 
@@ -71,7 +71,7 @@ final internal class WebService {
                     let result = try decoder.decode(T.self, from: $0)
                     return result
                 }
-                .catchError { error in
+                .catch { error in
                     print("WebServices Error ---> \(error)")
                     if hideLoader == nil {
                         vc?.hideLoader()

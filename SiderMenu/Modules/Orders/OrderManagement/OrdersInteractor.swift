@@ -36,7 +36,7 @@ class OrdersInteractor: OrdersPresenterToInteractorProtocol {
                 }
                 }, onError: { [weak self] error in
                     print("Data extraida \(error)")
-                    self?.presenter?.fetchedDataError()
+                    self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }
     

@@ -28,10 +28,8 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
     }
     
     func updateView() {
-        interactor?.prepareResponseCategory()
-        interactor?.prepareResponseForModel()
         initialConfiguration()
-        
+        seeAll()
         let orderId = 5
         interactor?.prepareShowCart(orderId)
     }
@@ -56,6 +54,10 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
         interactor?.prepareResponseRemoveAllProduct(orderId)
     }
     
+    func seeAll() {
+        interactor?.prepareResponseCategory()
+        interactor?.prepareResponseForModel()
+    }
     
     func saveProduct(_ list: [String]) {
         
@@ -66,6 +68,10 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
 //        vc.navigationController?.popToViewController(OrdersRouter.createModule(), animated: true)
         
 //        interactor?.prepareResponseAddProduct()
+    }
+    
+    func filterProductsforCategory(_ index: Int) {
+        interactor?.prepareResponseFilter(index)
     }
     
 }
@@ -80,7 +86,12 @@ extension OrderAddProductPresenter: OrderAddProductInteractorToPresenterProtocol
     
     func fetchedDataSuccess(model: ProductResponse) {
         if let populars = model.populars {
-            view?.popularsData = populars
+            if populars.count > 0{
+                view?.popularsData = populars
+                view?.containerPopulars.isHidden = false
+            }else{
+                view?.containerPopulars.isHidden = true
+            }
         }
         
         if let produtcs = model.products {
@@ -101,6 +112,13 @@ extension OrderAddProductPresenter: OrderAddProductInteractorToPresenterProtocol
             view?.carView.isHidden = true
         }
     }
+    
+    func fetchedDataSuccessFilter(_ model: FilterModel) {
+        if let produtcs = model.results {
+            view?.productsData = produtcs
+        }
+        view?.reloadData()
+    }
 /*
     func fetchedDataSuccessAddProduct(list: [String]) {
         self.delegate?.valueEntered(data: list)
@@ -109,6 +127,9 @@ extension OrderAddProductPresenter: OrderAddProductInteractorToPresenterProtocol
 //        vc.navigationController?.popViewController(animated: true)
     }
 */
+    func fetchedDataSuccessRemoveAll(_ msg: String) {
+        AlertHandler.showAlert(title: "Mensaje:", msg: msg)
+    }
     
     func fetchedDataSuccessAddProduct(_ model: CartModel) {
         view?.bottomConstraint.constant = constantBottomShowCart
@@ -117,7 +138,7 @@ extension OrderAddProductPresenter: OrderAddProductInteractorToPresenterProtocol
         view?.labelCant.text = model.count?.description
     }
     
-    func fetchedDataError() {
-        
+    func fetchedDataError(_ error: Error) {
+        AlertHandler.showError(error: error)
     }
 }

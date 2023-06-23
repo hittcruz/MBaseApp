@@ -22,8 +22,7 @@ class OrderAddProductInteractor: OrderAddProductPresenterToInteractorProtocol {
                     self?.presenter?.fetchedDataSuccessCategory(results)
                 }
                 }, onError: { [weak self] error in
-                    print("Data extraida \(error)")
-                    self?.presenter?.fetchedDataError()
+                    self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }
     func prepareResponseForModel() {
@@ -36,8 +35,7 @@ class OrderAddProductInteractor: OrderAddProductPresenterToInteractorProtocol {
                     self?.presenter?.fetchedDataSuccess(model: results)
                 }
                 }, onError: { [weak self] error in
-                    print("Data extraida \(error)")
-                    self?.presenter?.fetchedDataError()
+                    self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }
     
@@ -50,8 +48,7 @@ class OrderAddProductInteractor: OrderAddProductPresenterToInteractorProtocol {
                     self?.presenter?.fetchedDataSuccessShowCart(results)
                 }
                 }, onError: { [weak self] error in
-                    print("Data extraida \(error)")
-                    self?.presenter?.fetchedDataError()
+                    self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }
     
@@ -65,8 +62,7 @@ class OrderAddProductInteractor: OrderAddProductPresenterToInteractorProtocol {
                     self?.presenter?.fetchedDataSuccessAddProduct(results)
                 }
                 }, onError: { [weak self] error in
-                    print("Data extraida \(error)")
-                    self?.presenter?.fetchedDataError()
+                    self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }
     
@@ -76,10 +72,23 @@ class OrderAddProductInteractor: OrderAddProductPresenterToInteractorProtocol {
             .subscribe(onNext: { [weak self] results in
                 results.validate {
                     print("Data extraida \(results)")
+                    self?.presenter?.fetchedDataSuccessRemoveAll(results.message ?? "")
                 }
                 }, onError: { [weak self] error in
-                    print("Data extraida \(error)")
-                    self?.presenter?.fetchedDataError()
+                    self?.presenter?.fetchedDataError(error)
+            }).disposed(by: disposeBag)
+    }
+    
+    func prepareResponseFilter(_ categorieId: Int) {
+        webService.load(modelType: FilterModel.self, from: .product(serviceType: .filterProducts(categorieID: categorieId)))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    print("Data extraida \(results)")
+                    self?.presenter?.fetchedDataSuccessFilter(results)
+                }
+                }, onError: { [weak self] error in
+                    self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }
 }

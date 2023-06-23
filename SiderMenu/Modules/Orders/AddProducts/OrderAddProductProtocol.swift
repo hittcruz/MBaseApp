@@ -10,6 +10,7 @@ import UIKit
 
 protocol OrderAddProductPresenterToViewProtocol: AnyObject {
     var bottomConstraint: NSLayoutConstraint! {get set}
+    var containerPopulars: GeneralCustomView! {get set}
     var productsData: [Products] {get set}
     var categoriesData: [Category] {get set}
     var popularsData: [Products] {get set}
@@ -26,7 +27,9 @@ protocol OrderAddProductInteractorToPresenterProtocol: AnyObject {
     func fetchedDataSuccessCategory(_ model: CategorieResponse)
     func fetchedDataSuccessAddProduct(_ model: CartModel)
     func fetchedDataSuccessShowCart(_ model: CartModel)
-    func fetchedDataError()
+    func fetchedDataSuccessFilter(_ model: FilterModel)
+    func fetchedDataSuccessRemoveAll(_ msg: String)
+    func fetchedDataError(_ error: Error)
 }
 
 protocol OrderAddProductPresenterToInteractorProtocol: AnyObject {
@@ -35,6 +38,7 @@ protocol OrderAddProductPresenterToInteractorProtocol: AnyObject {
     func prepareShowCart(_ orderId :Int)
     func prepareResponseAddProduct(_ orderId:Int,_ productID: Int,_ preci: Double)
     func prepareResponseRemoveAllProduct(_ orderId: Int)
+    func prepareResponseFilter(_ categorieId: Int)
     func prepareResponseCategory()
 }
 
@@ -43,9 +47,11 @@ protocol OrderAddProductViewToPresenterProtocol: AnyObject {
     var interactor: OrderAddProductPresenterToInteractorProtocol? {get set}
     var router: OrderAddProductPresenterToRouterProtocol? {get set}
     func updateView()
+    func seeAll()
     func addProduct(_ index: Int)
     func removeAllProducts()
     func saveProduct(_ list: [String])
+    func filterProductsforCategory(_ index: Int)
 }
 
 protocol OrderAddProductPresenterToRouterProtocol: AnyObject {
