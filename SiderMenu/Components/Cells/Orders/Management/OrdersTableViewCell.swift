@@ -30,10 +30,15 @@ class OrdersTableViewCell: UITableViewCell {
     }
     
     func attachOrder(order: OrderModel){
-        lblOrder.text = "Pedido N°: \(order.numberOrder)"
-        lblDate.text = "Fecha de entrega: \(order.delivery_date)"
-        lblCount.text = "Cantidad: 2"
-        lblTotal.text = "Total S/. \(order.amount)"
+        let client = order.client ?? "Cliente"
+        let date = order.deliveryDate ?? "00/00/0000"
+        let count = order.count ?? "0"
+        let total = order.total ?? 0.00
+        
+        lblOrder.text = "Cliente: \(client)"
+        lblDate.text = "Fecha de entrega: \(date)"
+        lblCount.text = "Cantidad: \(count)"
+        lblTotal.text = "Total S/. \(total)"
     }
     
 }

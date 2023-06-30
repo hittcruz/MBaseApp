@@ -26,11 +26,11 @@ class OrdersRouter : OrdersPresenterToRouterProtocol {
         return view
     }
     
-    func goToAddProducts(_ origin: UIViewController?,_ delegate: delegateOrderAddProductProtocol) {
+    func goToAddProducts(_ origin: UIViewController?,_ delegate: delegateOrderAddProductProtocol, _ model: OrdersResponse) {
         let navigationController = origin?.navigationController as? NavigationViewController
         if let navigationController = navigationController {
 //            navigationController.pushViewController(OrderAddProductRouter.createModule(delegate), animated: true)
-            navigationController.setViewControllers([OrderAddProductRouter.createModule()], animated: true)
+            navigationController.setViewControllers([OrderAddProductRouter.createModule(model)], animated: true)
         } else {
             origin?.navigationController?.setViewControllers([OrderAddProductRouter.createModule(delegate)], animated: true)
         }

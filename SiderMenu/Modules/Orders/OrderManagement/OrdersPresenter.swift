@@ -15,9 +15,23 @@ enum segmentOptions: Int {
 }
 
 enum orderOptions: String, CaseIterable {
-    case pending = "Pendientes"
-    case cancel = "Cancelados"
-    case finished = "Finalizados"
+    case create = "CR"
+    case cancel = "CN"
+    case pending = "PR"
+    case finished = "FN"
+    
+    func getTitle()-> String{
+        switch self {
+        case .create:
+            return "Creados "
+        case .cancel:
+            return "Cancelados "
+        case .pending:
+            return "Pendientes "
+        case .finished:
+            return "Finalizados "
+        }
+    }
 }
 
 class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
@@ -25,6 +39,9 @@ class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
     var view: OrdersPresenterToViewProtocol?
     var interactor: OrdersPresenterToInteractorProtocol?
     var router: OrdersPresenterToRouterProtocol?
+    var dataStatus: [StatusModel] = []
+    var statusID: Int = -1
+    var title: String = "Lista de Pedidos "
     
     func updateView() {
         
@@ -40,31 +57,27 @@ class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
         initialConfiguration()
     }
     
-    func changeLabels(_ item: orderOptions) {
-        switch item {
-        case .pending:
-            view?.lblTitleTable.text = "Lista de Pedidos Pendientes"
-            view?.lblTitleTable.textColor = .blue
-        case .cancel:
-            view?.lblTitleTable.text = "Lista de Pedidos Cancelados"
-            view?.lblTitleTable.textColor = .red
-        case .finished:
-            view?.lblTitleTable.text = "Lista de Pedidos Finalizados"
-            view?.lblTitleTable.textColor = .systemGreen
-        }
+    func changeLabels(_ code: String) {
+        let cod = dataStatus.filter({$0.code == code}).first
+        statusID = cod?.stateID ?? -1
+        let type = orderOptions(rawValue: code)?.getTitle() ?? ""
+        title = "Lisa de Pedidos \(type)"
+        view?.filterSegmentControl.selectedSegmentIndex = 2
+        interactor?.prepareResponseFilterStatus(statusID, "", "")
     }
     
     private func initialConfiguration(){
         view?.viewPendingContainer.shadows(opacity: 0.5)
         view?.viewCancelContainer.shadows(opacity: 0.5)
         view?.viewFinishedContainer.shadows(opacity: 0.5)
+        view?.viewCreateContainer.shadows(opacity: 0.5)
         
 //        view?.txtFromDate.addStartDateTextFieldImage()
 //        view?.txtToDate.addEndDateTextFieldImage()
         view?.viewDateFilter.isHidden = true
         view?.lblTitleTable.textColor = .blue
-        
-        view?.lblTitleTable.text = "Lista de Pedidos Pendientes"
+        view?.filterSegmentControl.selectedSegmentIndex = 2
+        view?.lblTitleTable.text = title
     }
     
     func segmentedAction(_ indicator: Int) {
@@ -73,25 +86,38 @@ class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
         
         switch segmentOptions(rawValue: indicator){
         case .today:
-            print("aqui 0")
+            let today = DateUtils.getStringDateFrom("YYYY-MM-dd", Date())
+            interactor?.prepareResponseFilterStatus(statusID , today, today)
         case .custom:
-            print("aqui 1")
             view?.txtFromDate.addStartDateTextFieldImage()
             view?.txtToDate.addEndDateTextFieldImage()
         case .all:
-            print("aqui 2")
+            interactor?.prepareResponseFilterStatus(statusID , "", "")
         case .none:
-            print("aqui none")
+            break
         }
     }
     
-    func goAddProducts(_ index: Int) {
-        print("save Order index \(index)")
-        interactor?.prepareResponseSaveOrder()
+    func goAddProducts(_ index: Int,_ deliveryDate: String){
+        let userId = 1
+        let clientId = index
+        let dateOrder = DateUtils.getStringDateFrom("YYYY-MM-dd", Date())
+        let deliveryOrder = deliveryDate
+        let statusId = 1
+        interactor?.prepareResponseSaveOrder(userID: userId, clientID: clientId, orderDate: dateOrder, deliveryDate: deliveryOrder, statusID: statusId)
     }
     
     func goNewOrder() {
         interactor?.prepareResponseClient()
+    }
+    
+    func filterAction() {
+        
+        if let fromDate = minDate, let toDate = maxDate {
+            interactor?.prepareResponseFilterStatus(statusID , DateUtils.getStringDateFrom("YYYY-MM-dd", fromDate), DateUtils.getStringDateFrom("YYYY-MM-dd", toDate))
+        }else{
+            AlertHandler.showAlert(title: "Fecha vacía", msg: "Selecciona fecha de inicio y fin")
+        }
     }
 }
 
@@ -107,18 +133,31 @@ extension OrdersPresenter: OrdersInteractorToPresenterProtocol{
         vc.present(viewController, animated: true, completion: nil)
     }
     
-    func fetchedDataSuccess(list: [OrderModel]) {
-        view?.reloadTable(data: list)
-        print("charge data OrderModel")
+    func fetchedDataSuccess(_ model: OrdersResponse) {
+        let data = model.orders
+        dataStatus = model.status
+        view?.lblTitleTable.text = title + data.count.description + "/" + data.count.description
+        view?.reloadTable(data: data)
     }
     
-    func fetchedDataSuccessOrder() {
+    func fetchedDataSuccessOrder(_ model: OrdersResponse) {
         guard let vc = view as? UIViewController else {return}
-        print("go add product")
-        router?.goToAddProducts(vc, self)
+        print("go add product - \(model)")
+        router?.goToAddProducts(vc, self, model)
+    }
+    
+    func fetchedDataSuccessFilterStatus(_ model: OrdersResponse) {
+        let data = model.orders
+//        dataStatus = model.status
+        view?.lblTitleTable.text = title + data.count.description + "/" + data.count.description
+        view?.reloadTable(data: data)
     }
     
     func fetchedDataError(_ error: Error) {
+        AlertHandler.showError(error: error)
+    }
+    
+    private func updateFilterData(_ model: OrdersResponse){
         
     }
 }

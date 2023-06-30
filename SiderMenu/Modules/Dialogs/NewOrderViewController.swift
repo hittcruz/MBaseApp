@@ -49,7 +49,7 @@ class NewOrderViewController: UIViewController {
             data = dataList
         }
         
-        var comboList = data.map({comboModel(id: $0.id ?? 0, code: $0.dni ?? "", description: $0.name ?? "")})
+        let comboList = data.map({comboModel(id: $0.id ?? 0, code: $0.dni ?? "", description: $0.name ?? "")})
         return comboList
     }
 
@@ -59,9 +59,17 @@ class NewOrderViewController: UIViewController {
     
     @IBAction func goAddProduct(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegateOrder?.goAddProducts(modelCombo?.id ?? 0)
+        if let toDate = maxDate {
+            delegateOrder?.goAddProducts(modelCombo?.id ?? 0, DateUtils.getStringDateFrom("YYYY-MM-dd", toDate))
+        }else{
+            AlertHandler.showAlert(title: "Fecha vacía", msg: "Seleccionar fecha")
+        }
+        PersistentData.shared.nameClient.value = modelCombo?.description ?? ""
     }
     
+    @IBAction func addBeginTextField(_ sender: Any) {
+        txtFilterTo = txtDateOrder
+    }
 }
 
 extension NewOrderViewController: DropDownButtonDelegate {

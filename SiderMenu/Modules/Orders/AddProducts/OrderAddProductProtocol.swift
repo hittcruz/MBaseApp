@@ -46,6 +46,8 @@ protocol OrderAddProductViewToPresenterProtocol: AnyObject {
     var view: OrderAddProductPresenterToViewProtocol? {get set}
     var interactor: OrderAddProductPresenterToInteractorProtocol? {get set}
     var router: OrderAddProductPresenterToRouterProtocol? {get set}
+    var modelClient: OrdersResponse? {get set}
+    
     func updateView()
     func seeAll()
     func addProduct(_ index: Int)
@@ -56,6 +58,6 @@ protocol OrderAddProductViewToPresenterProtocol: AnyObject {
 
 protocol OrderAddProductPresenterToRouterProtocol: AnyObject {
     static func createModule(_ delegate: delegateOrderAddProductProtocol) -> UIViewController
-    static func createModule() -> UIViewController
+    static func createModule(_ modelClient: OrdersResponse) -> UIViewController
     func goToOrders(_ origin: UIViewController?)
 }

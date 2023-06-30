@@ -54,6 +54,9 @@
                                     <rect key="frame" x="162.66666666666663" y="0.0" width="152.33333333333337" height="40"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="addBeginTextField:" destination="-1" eventType="editingDidBegin" id="BXa-mT-HVH"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <constraints>

@@ -114,7 +114,7 @@ class NavigationViewController: UINavigationController {
         case is OrdersViewController:
             configure(left: .menu, middle: .title(text: "Orders View"))
         case is OrderAddProductViewController:
-            configure(left: .menu, middle: .title(text: "Add Product"), backgroundColor: .systemFill)
+            configure(left: .menu, middle: .title(text: PersistentData.shared.nameClient.value), backgroundColor: .systemFill)
         default:
             break
         }

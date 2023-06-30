@@ -18,6 +18,7 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
     var router: OrderAddProductPresenterToRouterProtocol?
     
     weak var delegate: delegateOrderAddProductProtocol?
+    var modelClient: OrdersResponse?
     
     let constantBottomShowCart:CGFloat = 58
     let constantBottomCloseCart:CGFloat = 8

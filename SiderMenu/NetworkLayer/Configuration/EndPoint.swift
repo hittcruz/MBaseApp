@@ -45,6 +45,7 @@ internal extension Endpoint {
             headers["Content-Type"] = "application/json"
             request.allHTTPHeaderFields = headers
             let jsonString = properties.jsonString
+            print(" json: \(jsonString)")
             request.httpBody = jsonString.data(using: String.Encoding.utf8)
         }
 

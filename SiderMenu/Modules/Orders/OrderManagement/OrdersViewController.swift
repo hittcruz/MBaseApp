@@ -9,10 +9,6 @@ import UIKit
 
 class OrdersViewController: UIViewController {
     
-    @IBOutlet weak var lblHeaderTotal: UILabel!
-    @IBOutlet weak var lblYear: UILabel!
-    @IBOutlet weak var lblMonth: UILabel!
-    @IBOutlet weak var lblDay: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewAdd: GeneralCustomView!
     
@@ -20,7 +16,10 @@ class OrdersViewController: UIViewController {
     @IBOutlet weak var viewFinishedContainer: GeneralCustomView!
     @IBOutlet weak var viewCancelContainer: GeneralCustomView!
     @IBOutlet weak var viewPendingContainer: GeneralCustomView!
+    @IBOutlet weak var viewCreateContainer: GeneralCustomView!
     
+    @IBOutlet weak var filterSegmentControl: UISegmentedControl!
+    @IBOutlet weak var applyFilterButton: CustomButton!
     @IBOutlet weak var viewDateFilter: UIView!
     @IBOutlet weak var txtFromDate: UITextField!
     @IBOutlet weak var txtToDate: UITextField!
@@ -52,25 +51,42 @@ class OrdersViewController: UIViewController {
     }
     
     @IBAction func chargePendingAction(_ sender: UIButton) {
-        let item = orderOptions.allCases[sender.tag]
+        let item = orderOptions.allCases[sender.tag].rawValue
         viewPendingContainer.handleTap()
         presenter?.changeLabels(item)
     }
     
     @IBAction func chargeCancelAction(_ sender: UIButton) {
-        let item = orderOptions.allCases[sender.tag]
+        let item = orderOptions.allCases[sender.tag].rawValue
         viewCancelContainer.handleTap()
         presenter?.changeLabels(item)
     }
     
     @IBAction func chargeFinishAction(_ sender: UIButton) {
-        let item = orderOptions.allCases[sender.tag]
+        let item = orderOptions.allCases[sender.tag].rawValue
         viewFinishedContainer.handleTap()
         presenter?.changeLabels(item)
     }
     
+    @IBAction func chargeCreateAction(_ sender: UIButton) {
+        viewCreateContainer.handleTap()
+        presenter?.changeLabels("")
+    }
+    
     @IBAction func segmentAction(_ sender: UISegmentedControl) {
         presenter?.segmentedAction(sender.selectedSegmentIndex)
+    }
+    
+    @IBAction func filterAction(_ sender: Any) {
+        presenter?.filterAction()
+    }
+    
+    @IBAction func addBeginTextField(_ sender: Any) {
+        txtFilterFrom = txtFromDate
+    }
+    
+    @IBAction func addBeginToTextField(_ sender: Any) {
+        txtFilterTo = txtToDate
     }
 }
 

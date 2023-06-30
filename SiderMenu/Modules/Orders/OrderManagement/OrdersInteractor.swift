@@ -15,14 +15,16 @@ class OrdersInteractor: OrdersPresenterToInteractorProtocol {
     private let disposeBag = DisposeBag()
     
     func prepareResponseForModel() {
-
-        let data = [
-            OrderModel(id: 0, user_id: 1, client_id: 1, numberOrder: "00234", order_date: "01/05/2023", delivery_date: "01/05/2023", amount: 12.0, state: "Creado"),
-            OrderModel(id: 0, user_id: 1, client_id: 1, numberOrder: "00235", order_date: "03/05/2023", delivery_date: "03/05/2023", amount: 12.0, state: "Preparado"),
-            OrderModel(id: 0, user_id: 1, client_id: 1, numberOrder: "00236", order_date: "11/05/2023", delivery_date: "11/05/2023", amount: 12.0, state: "Preparado")
-        ]
-        
-        presenter?.fetchedDataSuccess(list: data)
+        webService.load(modelType: OrdersResponse.self, from: .order(serviceType: .list))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    print("Data extraida \(results)")
+                    self?.presenter?.fetchedDataSuccess(results)
+                }
+                }, onError: { [weak self] error in
+                    self?.presenter?.fetchedDataError(error)
+            }).disposed(by: disposeBag)
     }
     
     func prepareResponseClient() {
@@ -40,7 +42,27 @@ class OrdersInteractor: OrdersPresenterToInteractorProtocol {
             }).disposed(by: disposeBag)
     }
     
-    func prepareResponseSaveOrder() {
-        presenter?.fetchedDataSuccessOrder()
+    func prepareResponseFilterStatus(_ statusId: Int, _ fromDate: String,_ toDate:String) {
+        webService.load(modelType: OrdersResponse.self, from: .order(serviceType: .filterOrder(statusID: statusId, fromDate: fromDate, toDate: toDate)))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    self?.presenter?.fetchedDataSuccessFilterStatus(results)
+                }
+            }, onError: {[weak self] error in
+                self?.presenter?.fetchedDataError(error)
+            }).disposed(by: disposeBag)
+    }
+    
+    func prepareResponseSaveOrder(userID: Int, clientID: Int, orderDate: String, deliveryDate: String, statusID: Int) {
+        webService.load(modelType: OrdersResponse.self, from: .order(serviceType: .createOrder(userID: userID, clientID: clientID, orderDate: orderDate, deliveryDate: deliveryDate, statusID: statusID)))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] results in
+                results.validate {
+                    self?.presenter?.fetchedDataSuccessOrder(results)
+                }
+            }, onError: {[weak self] error in
+                self?.presenter?.fetchedDataError(error)
+            }).disposed(by: disposeBag)
     }
 }
