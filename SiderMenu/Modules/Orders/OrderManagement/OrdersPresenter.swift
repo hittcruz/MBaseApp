@@ -14,26 +14,6 @@ enum segmentOptions: Int {
     case all = 2
 }
 
-enum orderOptions: String, CaseIterable {
-    case create = "CR"
-    case cancel = "CN"
-    case pending = "PR"
-    case finished = "FN"
-    
-    func getTitle()-> String{
-        switch self {
-        case .create:
-            return "Creados "
-        case .cancel:
-            return "Cancelados "
-        case .pending:
-            return "Pendientes "
-        case .finished:
-            return "Finalizados "
-        }
-    }
-}
-
 class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
     
     var view: OrdersPresenterToViewProtocol?
@@ -60,7 +40,7 @@ class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
     func changeLabels(_ code: String) {
         let cod = dataStatus.filter({$0.code == code}).first
         statusID = cod?.stateID ?? -1
-        let type = orderOptions(rawValue: code)?.getTitle() ?? ""
+        let type = ConstantsPrivate.orderOptions(rawValue: code)?.getTitle() ?? ""
         title = "Lisa de Pedidos \(type)"
         view?.filterSegmentControl.selectedSegmentIndex = 2
         interactor?.prepareResponseFilterStatus(statusID, "", "")
@@ -119,6 +99,12 @@ class OrdersPresenter: NSObject, OrdersViewToPresenterProtocol {
             AlertHandler.showAlert(title: "Fecha vacía", msg: "Selecciona fecha de inicio y fin")
         }
     }
+    
+    func goNextCart(_ model: OrderModel) {
+        PersistentData.shared.nameClient.value = model.client ?? ""
+        guard let vc = view as? UIViewController else {return}
+        router?.goToAddProducts(vc, self, model)
+    }
 }
 
 extension OrdersPresenter: OrdersInteractorToPresenterProtocol{
@@ -143,7 +129,11 @@ extension OrdersPresenter: OrdersInteractorToPresenterProtocol{
     func fetchedDataSuccessOrder(_ model: OrdersResponse) {
         guard let vc = view as? UIViewController else {return}
         print("go add product - \(model)")
-        router?.goToAddProducts(vc, self, model)
+        if let order = model.orders.first {
+            router?.goToAddProducts(vc, self, order)
+        }else{
+            AlertHandler.showAlert(title: "Pedido vacío", msg: "No se encontró ningun pedido")
+        }
     }
     
     func fetchedDataSuccessFilterStatus(_ model: OrdersResponse) {

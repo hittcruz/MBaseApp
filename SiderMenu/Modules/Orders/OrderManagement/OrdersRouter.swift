@@ -26,7 +26,7 @@ class OrdersRouter : OrdersPresenterToRouterProtocol {
         return view
     }
     
-    func goToAddProducts(_ origin: UIViewController?,_ delegate: delegateOrderAddProductProtocol, _ model: OrdersResponse) {
+    func goToAddProducts(_ origin: UIViewController?,_ delegate: delegateOrderAddProductProtocol, _ model: OrderModel) {
         let navigationController = origin?.navigationController as? NavigationViewController
         if let navigationController = navigationController {
 //            navigationController.pushViewController(OrderAddProductRouter.createModule(delegate), animated: true)

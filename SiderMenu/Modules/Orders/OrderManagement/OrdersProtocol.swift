@@ -50,9 +50,10 @@ protocol OrdersViewToPresenterProtocol: AnyObject {
     func segmentedAction(_ indicator:Int)
     func changeLabels(_ code: String)
     func filterAction()
+    func goNextCart(_ model: OrderModel)
 }
 
 protocol OrdersPresenterToRouterProtocol: AnyObject {
     static func createModule() -> UIViewController
-    func goToAddProducts(_ origin: UIViewController?,_ delegate: delegateOrderAddProductProtocol, _ model: OrdersResponse)
+    func goToAddProducts(_ origin: UIViewController?,_ delegate: delegateOrderAddProductProtocol, _ model: OrderModel)
 }

@@ -25,7 +25,7 @@ class OrderAddProductRouter : OrderAddProductPresenterToRouterProtocol {
         return view
     }
     
-    static func createModule(_ modelClient: OrdersResponse) -> UIViewController {
+    static func createModule(_ modelOrder: OrderModel) -> UIViewController {
         let view = OrderAddProductViewController()
         let presenter : OrderAddProductViewToPresenterProtocol & OrderAddProductInteractorToPresenterProtocol = OrderAddProductPresenter()
         let interactor : OrderAddProductPresenterToInteractorProtocol = OrderAddProductInteractor()
@@ -36,7 +36,7 @@ class OrderAddProductRouter : OrderAddProductPresenterToRouterProtocol {
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
-        presenter.modelClient = modelClient
+        presenter.modelOrder = modelOrder
       
         return view
     }

@@ -39,6 +39,7 @@ class OrdersTableViewCell: UITableViewCell {
         lblDate.text = "Fecha de entrega: \(date)"
         lblCount.text = "Cantidad: \(count)"
         lblTotal.text = "Total S/. \(total)"
+        viewContainer.backgroundColor = ConstantsPrivate.orderOptions(rawValue: order.codeState ?? "")?.getColor()
     }
     
 }

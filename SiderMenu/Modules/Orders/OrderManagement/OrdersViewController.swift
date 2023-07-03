@@ -51,19 +51,19 @@ class OrdersViewController: UIViewController {
     }
     
     @IBAction func chargePendingAction(_ sender: UIButton) {
-        let item = orderOptions.allCases[sender.tag].rawValue
+        let item = ConstantsPrivate.orderOptions.allCases[sender.tag].rawValue
         viewPendingContainer.handleTap()
         presenter?.changeLabels(item)
     }
     
     @IBAction func chargeCancelAction(_ sender: UIButton) {
-        let item = orderOptions.allCases[sender.tag].rawValue
+        let item = ConstantsPrivate.orderOptions.allCases[sender.tag].rawValue
         viewCancelContainer.handleTap()
         presenter?.changeLabels(item)
     }
     
     @IBAction func chargeFinishAction(_ sender: UIButton) {
-        let item = orderOptions.allCases[sender.tag].rawValue
+        let item = ConstantsPrivate.orderOptions.allCases[sender.tag].rawValue
         viewFinishedContainer.handleTap()
         presenter?.changeLabels(item)
     }
@@ -109,7 +109,9 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(" did Orders \(String(describing: orderList?[indexPath.row]))")
+        if let model = orderList?[indexPath.row]{
+            presenter?.goNextCart(model)
+        }
     }
 }
 

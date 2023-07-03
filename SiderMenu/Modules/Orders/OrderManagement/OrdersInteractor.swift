@@ -19,7 +19,6 @@ class OrdersInteractor: OrdersPresenterToInteractorProtocol {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] results in
                 results.validate {
-                    print("Data extraida \(results)")
                     self?.presenter?.fetchedDataSuccess(results)
                 }
                 }, onError: { [weak self] error in
@@ -32,12 +31,10 @@ class OrdersInteractor: OrdersPresenterToInteractorProtocol {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] results in
                 results.validate {
-                    print("OrdersInteractor - prepareResponseSaveOrder ")
 //                    print("Data extraida \(results)")
                     self?.presenter?.fetchedDataSuccessClient(results)
                 }
                 }, onError: { [weak self] error in
-                    print("Data extraida \(error)")
                     self?.presenter?.fetchedDataError(error)
             }).disposed(by: disposeBag)
     }

@@ -18,7 +18,7 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
     var router: OrderAddProductPresenterToRouterProtocol?
     
     weak var delegate: delegateOrderAddProductProtocol?
-    var modelClient: OrdersResponse?
+    var modelOrder: OrderModel?
     
     let constantBottomShowCart:CGFloat = 58
     let constantBottomCloseCart:CGFloat = 8
@@ -31,8 +31,12 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
     func updateView() {
         initialConfiguration()
         seeAll()
-        let orderId = 5
-        interactor?.prepareShowCart(orderId)
+        if let orderId = modelOrder?.id {
+            interactor?.prepareShowCart(orderId)
+            print("OrderAddProductPresenter - updateView - ID: \(orderId)")
+        }else{
+            AlertHandler.showAlert(title: "Identidicador vacío", msg: "No se encontro el id del pedido")
+        }
     }
     
     private func initialConfiguration(){
@@ -44,15 +48,23 @@ class OrderAddProductPresenter : OrderAddProductViewToPresenterProtocol {
     
     func addProduct(_ index: Int) {
         let item = view?.productsData[index]
-        let orderId = 5
-        interactor?.prepareResponseAddProduct(orderId, item?.id ?? 0, item?.unitPreci ?? 0.0)
+        if let orderId = modelOrder?.id {
+            interactor?.prepareResponseAddProduct(orderId, item?.id ?? 0, item?.unitPreci ?? 0.0)
+            print("OrderAddProductPresenter - addProduct - ID: \(orderId)")
+        }else{
+            AlertHandler.showAlert(title: "Identidicador vacío", msg: "No se encontro el id del pedido")
+        }
     }
     
     func removeAllProducts() {
         view?.bottomConstraint.constant = constantBottomCloseCart
         view?.carView.isHidden = true
-        let orderId = 5
-        interactor?.prepareResponseRemoveAllProduct(orderId)
+        if let orderId = modelOrder?.id {
+            interactor?.prepareResponseRemoveAllProduct(orderId)
+            print("OrderAddProductPresenter - removeAllProducts - ID: \(orderId)")
+        }else{
+            AlertHandler.showAlert(title: "Identidicador vacío", msg: "No se encontro el id del pedido")
+        }
     }
     
     func seeAll() {

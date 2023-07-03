@@ -14,7 +14,7 @@ struct OrderModel: Codable {
     let clientId: Int?
     let statusID: Int?
     let numberOrder: String?
-    let orderDate: String?
+    let orderDate, codeState: String?
     let client, state, deliveryDate: String?
     let count: String?
     let total, amount: Double?
@@ -26,6 +26,6 @@ struct OrderModel: Codable {
         case clientId = "client_id"
         case userId = "user_id"
         case statusID = "status_id"
-        case count, total, amount
+        case count, total, amount, codeState
     }
 }
